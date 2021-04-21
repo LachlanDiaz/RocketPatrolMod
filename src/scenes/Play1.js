@@ -22,6 +22,12 @@ class Play1 extends Phaser.Scene {
             startFrame: 0,
             endFrame: 4
         });
+        this.load.spritesheet('EnemyShipBoss', './assets/EnemyShipBoss.png', {
+            frameWidth: 32,
+            frameHeight: 32,
+            startFrame: 0,
+            endFrame: 4
+        });
         this.load.spritesheet('bordertop', './assets/bordertop.png', {
             frameWidth: 640,
             frameHeight: 32,
@@ -66,6 +72,17 @@ class Play1 extends Phaser.Scene {
         });
 
         this.anims.create({
+            key: 'EnemyShipBoss',
+            frames: this.anims.generateFrameNumbers('EnemyShipBoss', {
+                start: 0,
+                end: 4,
+                first: 0
+            }),
+            frameRate: 8,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: 'bordertop',
             frames: this.anims.generateFrameNumbers('bordertop', {
                 start: 0,
@@ -97,6 +114,8 @@ class Play1 extends Phaser.Scene {
         this.ship02.anims.play('EnemyShip');
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'EnemyShip', 0, 10).setOrigin(0,0);
         this.ship03.anims.play('EnemyShip');
+        this.shipboss = new SpaceshipBoss(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'EnemyShipBoss', 0, 100).setOrigin(0,0);
+        this.shipboss.anims.play('EnemyShipBoss');
 
         //green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width,
@@ -179,6 +198,7 @@ class Play1 extends Phaser.Scene {
             this.ship01.update();
             this.ship02.update();
             this.ship03.update();
+            this.shipboss.update();
         }
 
         //check collisions
@@ -193,6 +213,10 @@ class Play1 extends Phaser.Scene {
         if(this.checkCollision(this.p1Rocket, this.ship01)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
+        }
+        if(this.checkCollision(this.p1Rocket, this.shipboss)) {
+            this.p1Rocket.reset();
+            this.shipExplode(this.shipboss);
         }
     }
 
