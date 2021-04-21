@@ -137,10 +137,10 @@ class Play1 extends Phaser.Scene {
 
 
         //define keys
-        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
 
         //initialize score
         this.p1Score = 0;
@@ -176,7 +176,7 @@ class Play1 extends Phaser.Scene {
 
         score = this.p1Score;
 
-        this.timeLeft = Math.trunc(10 - this.clock.getElapsedSeconds() + this.timePoints);
+        this.timeLeft = Math.trunc(30 - this.clock.getElapsedSeconds() + this.timePoints);
 
         this.timerRight.text = "Time:" + this.timeLeft;
 

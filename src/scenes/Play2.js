@@ -140,10 +140,10 @@ class Play2 extends Phaser.Scene {
 
 
          //define keys
-         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
          keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
          keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
          keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
          keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
          keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
          keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -182,12 +182,12 @@ class Play2 extends Phaser.Scene {
 
         score = this.p1Score;
 
-        this.timeLeft = Math.trunc(10 - this.clock.getElapsedSeconds() + this.timePoints);
+        this.timeLeft = Math.trunc(30 - (2 * this.clock.getElapsedSeconds()) + this.timePoints);
 
         this.timerRight.text = "Time:" + this.timeLeft;
 
         if (this.timeLeft <= 0) {
-            this.scene.start('gameoverScene1');
+            this.scene.start('gameoverScene2');
         }
         this.starfield.tilePositionX -= starSpeed;
         this.planetbackground.tilePositionX -= .5;

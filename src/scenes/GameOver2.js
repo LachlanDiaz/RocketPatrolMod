@@ -3,9 +3,8 @@ class GameOver2 extends Phaser.Scene {
         super("gameoverScene2");
     }
 
-
     create() {
-        let scoreConfig = {
+        let overConfig = {
             fontFamily: 'Consolas',
             fontSize: '28px',
             backgroundColor: '#F3B141',
@@ -15,16 +14,19 @@ class GameOver2 extends Phaser.Scene {
             top: 5,
             bottom: 5,
             },
-            fixedWidth: 100
+            fixedWidth: 0
         }
 
 
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
 
-
-        this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+        
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Game Over', overConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2, 'Press (R) to Restart or ← for Menu', overConfig).setOrigin(0.5);
+        overConfig.backgroundColor = '#00FF00';
+        overConfig.color = '#000';
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Score: ' + score, overConfig).setOrigin(0.5);
     }
 
     update() {
