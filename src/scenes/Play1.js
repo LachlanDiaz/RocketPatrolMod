@@ -83,14 +83,13 @@ class Play1 extends Phaser.Scene {
             fontSize: '28px',
             backgroundColor: '#F3B141',
             color: '#843605',
-            align: 'right',
+            align: 'left',
             padding: {
             top: 5,
             bottom: 5,
             },
-            fixedWidth: 100
+            fixedWidth: 170
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
 
         // GAME OVER flag
         this.gameOver = false;
@@ -102,9 +101,16 @@ class Play1 extends Phaser.Scene {
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+
+        this.timerRight = this.add.text(game.config.width - borderUISize - borderPadding - 120, borderUISize + borderPadding*2, "Time:" + this.clock.getElapsedSeconds(), scoreConfig);
+
+        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, "Score:" + this.p1Score, scoreConfig);
     }
 
     update() {
+
+        this.timeLeft = Math.trunc(60 - this.clock.getElapsedSeconds());
+        this.timerRight.text = "Time:" + this.timeLeft;
         // check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
         this.scene.restart();
@@ -163,7 +169,7 @@ class Play1 extends Phaser.Scene {
         });
         //score add and repaint
         this.p1Score += ship.points;
-        this.scoreLeft.text = this.p1Score;
+        this.scoreLeft.text = "Score: " + this.p1Score;
         this.sound.play('sfx_explosion');
     }
 }
