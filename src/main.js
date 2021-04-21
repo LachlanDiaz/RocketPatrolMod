@@ -1,3 +1,27 @@
+/* 
+Name: Lachlan Diaz
+Project Title: UFO Patrol
+Date: 4/21/2021
+Time Spent on Project: ~15hrs
+*/
+
+/*
+POINT BREAKDOWN:
+Implement a simultaneous two-player mode (30)
+Create a new scrolling tile sprite for the background (5)
+Display the time remaining (in seconds) on the screen (10)
+Replace the UI borders with new artwork (10)
+Create a new animated sprite for the Spaceship enemies (10)
+Implement parallax scrolling (10)
+Create a new spaceship type (w/ new artwork) that's smaller, moves faster, and is worth more points (20)
+Implement a new timing/scoring mechanism that adds time to the clock for successful hits (20)
+
+TOTAL: 115
+*/
+
+
+
+
 // game configureation
 let config = {
     type: Phaser.CANVAS,
