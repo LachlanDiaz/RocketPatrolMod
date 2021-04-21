@@ -13,7 +13,7 @@ class Menu extends Phaser.Scene {
     create() {
         let menuConfig = {
             fontFamily: 'Consolas',
-            fontSize: '28px',
+            fontSize: '24px',
             backgroundColor: '#F3B141',
             color: '#843605',
             align: 'right',
@@ -26,10 +26,11 @@ class Menu extends Phaser.Scene {
 
         //show menu text
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'UFO Blaster', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2, 'Player 1: Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Player 2: Use (A)(D) to move & (W) to fire', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for 1 Player or → for 2 Player', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + (2 * (borderUISize + borderPadding)), 'Press ← for 1 Player or → for 2 Player', menuConfig).setOrigin(0.5);
 
         //define keys 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
