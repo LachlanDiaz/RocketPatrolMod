@@ -55,8 +55,10 @@ class Play1 extends Phaser.Scene {
 
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'EnemyShip', 0, 30).setOrigin(0,0);
         this.ship01.anims.play('EnemyShip');
-        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
+        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'EnemyShip', 0, 20).setOrigin(0,0);
+        this.ship02.anims.play('EnemyShip');
+        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'EnemyShip', 0, 10).setOrigin(0,0);
+        this.ship03.anims.play('EnemyShip');
 
         //green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width,
@@ -79,7 +81,7 @@ class Play1 extends Phaser.Scene {
 
         // display score
         let scoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Consolas',
             fontSize: '28px',
             backgroundColor: '#F3B141',
             color: '#843605',
