@@ -1,6 +1,6 @@
 /* 
 Name: Lachlan Diaz
-Project Title: UFO Patrol
+Project Title: UFO Blaster
 Date: 4/21/2021
 Time Spent on Project: ~15hrs
 */
