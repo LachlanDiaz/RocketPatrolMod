@@ -7,6 +7,8 @@ class Play1 extends Phaser.Scene {
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
+        this.load.image('planetbackground', './assets/planetbackground.png');
+        this.load.image('asteriods', './assets/asteriods.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {
             frameWidth: 64,
@@ -20,12 +22,25 @@ class Play1 extends Phaser.Scene {
             startFrame: 0,
             endFrame: 4
         });
-        this
+        this.load.spritesheet('bordertop', './assets/bordertop.png', {
+            frameWidth: 640,
+            frameHeight: 32,
+            startFrame: 0,
+            endFrame: 3
+        });
+        this.load.spritesheet('borderside', './assets/borderside.png', {
+            frameWidth: 32,
+            frameHeight: 480,
+            startFrame: 0,
+            endFrame: 3
+        });
     }
 
     create() {
         //place starfield
         this.starfield = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'starfield').setOrigin(0, 0);
+        this.planetbackground = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'planetbackground').setOrigin(0, 0);
+        this.asteriods = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'asteriods').setOrigin(0, 0);
 
         
         //animation config
@@ -50,6 +65,29 @@ class Play1 extends Phaser.Scene {
             repeat: -1
         });
 
+        this.anims.create({
+            key: 'bordertop',
+            frames: this.anims.generateFrameNumbers('bordertop', {
+                start: 0,
+                end: 2,
+                first: 0
+            }),
+            frameRate: 3,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'borderside',
+            frames: this.anims.generateFrameNumbers('borderside', {
+                start: 0,
+                end: 2,
+                first: 0
+            }),
+            frameRate: 3,
+            repeat: -1
+        });
+        
+
         // add rocket (player 1)
         this.p1Rocket = new Rocket1(this, game.config.width/2, game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0);
 
@@ -65,10 +103,19 @@ class Play1 extends Phaser.Scene {
             borderUISize * 2, 0x00FF00).setOrigin(0,0);
     
         //boarders
-        this.add.rectangle(0,0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
+        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
+        this.top = this.add.sprite(320, 16, 'bordertop');
+        this.top.anims.play('bordertop');
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
+        this.bot = this.add.sprite(320, game.config.height - 16, 'bordertop');
+        this.bot.anims.play('bordertop');
         this.add.rectangle(0,0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
+        this.leftside = this.add.sprite(16, 240, 'borderside');
+        this.leftside.anims.play('borderside');
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
+        this.leftside = this.add.sprite(game.config.width - 16, 240, 'borderside');
+        this.leftside.anims.play('borderside');
+
 
         //define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -122,6 +169,9 @@ class Play1 extends Phaser.Scene {
             this.scene.start("menuScene");
         }
         this.starfield.tilePositionX -= starSpeed;
+        this.planetbackground.tilePositionX -= .5;
+        this.asteriods.tilePositionX += .75;
+        this.asteriods.tilePositionY -= 1;
 
         if (!this.gameOver) {
             //update rocket and ships
